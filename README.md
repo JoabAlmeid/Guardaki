@@ -1,114 +1,87 @@
-<div align="center">
-  <br />
-    <a href="https://youtu.be/lie0cr3wESQ" target="_blank">
-      <img src="public/readme/hero.png" alt="Project Banner">
-    </a>
-  <br />
 
-  <div>
-     <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=nextdotjs&color=000000" alt="nextdotjs" />
-    <img src="https://img.shields.io/badge/-TypeScript-black?style=for-the-badge&logoColor=white&logo=typescript&color=3178C6" alt="typescript" />
-    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="tailwindcss" />
-    <img src="https://img.shields.io/badge/-Appwrite-black?style=for-the-badge&logoColor=white&logo=appwrite&color=FD366E" alt="appwrite" />
-  </div>
 
-<h3 align="center">Storage and File Sharing Platform</h3>
+<h3 align="center">Plataforma de Armazenamento e Compartilhamento de Arquivos</h3>
 
    <div align="center">
-     Build this project step by step with our detailed tutorial on <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a> YouTube. Join the JSM family!
+     Um site para armazenar e compartilhar arquivos como o Google Drive.
     </div>
 </div>
 
-## 📋 <a name="table">Table of Contents</a>
+## 📋 <a name="table">Índice</a>
 
-1. 🤖 [Introduction](#introduction)
-2. ⚙️ [Tech Stack](#tech-stack)
-3. 🔋 [Features](#features)
-4. 🤸 [Quick Start](#quick-start)
-5. 🔗 [Assets](#links)
-6. 🚀 [More](#more)
+1. 🤖 [Introdução](#introduction)
+2. ⚙️ [Tecnologias](#tech-stack)
+3. 🔋 [Funcionalidades](#features)
+4. 🤸 [Início Rápido](#quick-start)
+5. 🔗 [Recursos](#links)
 
-## 🚨 Tutorial
 
-This repository contains the code corresponding to an in-depth tutorial available on our YouTube
-channel, <a href="https://www.youtube.com/@javascriptmastery/videos" target="_blank"><b>JavaScript Mastery</b></a>.
 
-If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects
-like these step-by-step in a beginner-friendly manner!
 
-<a href="https://youtu.be/lie0cr3wESQ?si=yLQyhMrYLjpysnqE" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
+## <a name="introduction">🤖 Introdução</a>
 
-## <a name="introduction">🤖 Introduction</a>
+Uma plataforma de gerenciamento de armazenamento e compartilhamento de arquivos que permite aos usuários enviar, organizar e compartilhar arquivos de forma simples. Construído com Next.js e Appwrite, utilizando recursos avançados para um gerenciamento de arquivos fluido.
 
-A storage management and file sharing platform that lets users effortlessly upload, organize, and share files. Built with the latest Next.js 15 and the Appwrite Node SDK, utilizing advanced features for seamless file management.
 
-If you're getting started and need assistance or face any bugs, join our active Discord community with over **34k+**
-members. It's a place where people help each other out.
+## <a name="tech-stack">⚙️ Tecnologias</a>
 
-<a href="https://discord.com/invite/n6EdbFJ" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/618f4872-1e10-42da-8213-1d69e486d02e" /></a>
+- React 19  
+- Next.js 15  
+- Appwrite  
+- TailwindCSS  
+- ShadCN  
+- TypeScript  
 
-## <a name="tech-stack">⚙️ Tech Stack</a>
+## <a name="features">🔋 Funcionalidades</a>
 
-- React 19
-- Next.js 15
-- Appwrite
-- TailwindCSS
-- ShadCN
-- TypeScript
+👉 **Autenticação de Usuário com Appwrite**: Implementa cadastro, login e logout usando o sistema de autenticação do Appwrite.  
 
-## <a name="features">🔋 Features</a>
+👉 **Upload de Arquivos**: Envie facilmente diferentes tipos de arquivos, como documentos, imagens, vídeos e áudios, garantindo a segurança de seus dados.  
 
-👉 **User Authentication with Appwrite**: Implement signup, login, and logout functionality using Appwrite's authentication system.
+👉 **Visualizar e Gerenciar Arquivos**: Navegue pelos arquivos enviados, visualize em uma nova aba, renomeie ou exclua arquivos.  
 
-👉 **FIle Uploads**: Effortlessly upload a variety of file types, including documents, images, videos, and audio, ensuring all your important data.
+👉 **Download de Arquivos**: Baixe seus arquivos enviados para acesso instantâneo a documentos importantes.  
 
-👉 **View and Manage Files**: Users can browse through their uploaded files stored in Appwrite storage, view on a new tab, rename file or delete.
+👉 **Compartilhamento de Arquivos**: Compartilhe arquivos com outras pessoas, permitindo colaboração e acesso fácil a conteúdos importantes.  
 
-👉 **Download Files**: Users can download their uploaded files giving them instant access to essential documents.
+👉 **Dashboard**: Obtenha uma visão geral com informações como armazenamento total e utilizado, uploads recentes e resumo por tipo de arquivo.  
 
-👉 **File Sharing**: Users can easily share their uploaded files with others, enabling collaboration and easy access to important content.
+👉 **Pesquisa Global**: Encontre rapidamente arquivos e conteúdos compartilhados em toda a plataforma.  
 
-👉 **Dashboard**: Gain insights at a glance with a dynamic dashboard that showcases total and consumed storage, recent uploads, and a summary of files grouped by type.
+👉 **Opções de Ordenação**: Organize arquivos por data, nome ou tamanho.  
 
-👉 **Global Search**: Users can quickly find files and shared content across the platform with a robust global search feature.
+👉 **Design Moderno e Responsivo**: Interface minimalista e funcional, adaptada para todos os dispositivos.  
 
-👉 **Sorting Options**: Organize files efficiently by sorting them by date, name, or size, making file management a breeze.
+E muito mais, incluindo os recursos mais recentes do **React 19**, **Next.js 15** e **Appwrite**, além de boas práticas de arquitetura e reutilização de código.  
 
-👉 **Modern Responsive Design**: A fresh and minimalist UI that emphasizes usability, ensuring a clean aesthetic across all devices.
+## <a name="quick-start">🤸 Início Rápido</a>
 
-and many more, including the latest **React 19**, **Next.js 15** and **Appwrite** features alongside code architecture and
-reusability
+Siga estas etapas para configurar o projeto localmente.
 
-## <a name="quick-start">🤸 Quick Start</a>
+**Pré-requisitos**  
 
-Follow these steps to set up the project locally on your machine.
+Certifique-se de ter instalado:  
 
-**Prerequisites**
+- [Git](https://git-scm.com/)  
+- [Node.js](https://nodejs.org/en)  
+- [npm](https://www.npmjs.com/)  
 
-Make sure you have the following installed on your machine:
-
-- [Git](https://git-scm.com/)
-- [Node.js](https://nodejs.org/en)
-- [npm](https://www.npmjs.com/) (Node Package Manager)
-
-**Cloning the Repository**
+**Clonando o Repositório**  
 
 ```bash
-git clone https://github.com/JavaScript-Mastery-Pro/storage_management_solution.git
-cd storage_management_solution
+git clone https://github.com/JoabAlmeid/Guardaki.git
+cd Guardaki
 ```
 
-**Installation**
-
-Install the project dependencies using npm:
+**Instalação**  
 
 ```bash
 npm install
 ```
 
-**Set Up Environment Variables**
+**Configurar Variáveis de Ambiente**  
 
-Create a new file named `.env.local` in the root of your project and add the following content:
+Crie o arquivo `.env.local` na raiz do projeto e adicione:  
 
 ```env
 NEXT_PUBLIC_APPWRITE_ENDPOINT="https://cloud.appwrite.io/v1"
@@ -120,33 +93,19 @@ NEXT_PUBLIC_APPWRITE_BUCKET=""
 NEXT_APPWRITE_KEY=""
 ```
 
-Replace the values with your actual Appwrite credentials. You can obtain these credentials by signing up &
-creating a new project on the [Appwrite website](https://appwrite.io/).
+Substitua pelos valores reais obtidos ao criar seu projeto no [Appwrite](https://appwrite.io/).  
 
-**Running the Project**
+**Rodando o Projeto**  
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
+Abra [http://localhost:3000](http://localhost:3000) no navegador para visualizar.  
 
-## <a name="links">🔗 Assets</a>
+## <a name="links">🔗 Recursos</a>
 
-- Assets used in the project can be found [here](https://jsm.dev/gdrive-kit)
-
-<a href="https://jsm.dev/gdrive-kit">
-  <img src="public/readme/videokit.png" alt="Video Kit Banner">
-</a>
+- Recursos usados no projeto: [clique aqui](https://jsm.dev/gdrive-kit)  
 
 
-## <a name="more">🚀 More</a>
 
-**Advance your skills with Next.js Pro Course**
-
-Enjoyed creating this project? Dive deeper into our PRO courses for a richer learning adventure. They're packed with
-detailed explanations, cool features, and exercises to boost your skills. Give it a go!
-
-<a href="https://jsm.dev/gdrive-jsmpro" target="_blank">
-  <img src="public/readme/jsmpro.png" alt="Project Banner">
-</a>
