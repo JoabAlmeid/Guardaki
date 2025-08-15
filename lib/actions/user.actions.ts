@@ -2,7 +2,7 @@
 
 import { createAdminClient, createSessionClient } from "@/lib/appwrite";
 import { appwriteConfig } from "@/lib/appwrite/config";
-import { Query, ID } from "node-appwrite";
+import { Query, ID, Account } from "node-appwrite";
 import { parseStringify } from "@/lib/utils";
 import { cookies } from "next/headers";
 import { avatarPlaceholderUrl } from "@/constants";
@@ -77,6 +77,7 @@ export const createAccount = async ({
   return parseStringify({ accountId });
 };
 
+//this verifies if the code you send in the OTP is the same as in the database
 export const verifySecret = async ({
   accountId,
   password,
@@ -85,17 +86,21 @@ export const verifySecret = async ({
   password: string;
 }) => {
   try {
+    //gets permissions
     const { account } = await createAdminClient();
 
+    //createSession is from appwrite. Makes session from token sent with info
     const session = await account.createSession(accountId, password);
 
     (await cookies()).set("appwrite-session", session.secret, {
+      //a bunch of precautions
       path: "/",
       httpOnly: true,
       sameSite: "strict",
       secure: true,
     });
 
+    //sends to appwrite sessionId so he knows a session is online
     return parseStringify({ sessionId: session.$id });
   } catch (error) {
     handleError(error, "Failed to verify OTP");
