@@ -107,6 +107,7 @@ export const verifySecret = async ({
   }
 };
 
+//used in many places to bring userId and do other functions
 export const getCurrentUser = async () => {
   try {
     const { databases, account } = await createSessionClient();
@@ -147,6 +148,7 @@ export const signInUser = async ({ email }: { email: string }) => {
     // User exists, send OTP
     if (existingUser) {
       await sendEmailOTP({ email });
+      //returns the accountId from the found user
       return parseStringify({ accountId: existingUser.accountId });
     }
 
