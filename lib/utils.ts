@@ -30,6 +30,8 @@ export const calculatePercentage = (sizeInBytes: number) => {
   return Number(percentage.toFixed(2));
 };
 
+//it takes the file's name beggining with the dot, pops the dot, then put in lowercase
+//then it checks if the extension is included in any of the cases below
 export const getFileType = (fileName: string) => {
   const extension = fileName.split(".").pop()?.toLowerCase();
 
@@ -112,7 +114,7 @@ export const formatDateTime = (isoString: string | null | undefined) => {
 
 export const getFileIcon = (
   extension: string | undefined,
-  type: FileType | string,
+  type: FileType | string
 ) => {
   switch (extension) {
     // Document
