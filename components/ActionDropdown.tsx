@@ -24,6 +24,8 @@ import { actionsDropdownItems } from "@/constants";
 import { constructDownloadUrl } from "@/lib/utils";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
+import { renameFile } from "@/lib/actions/file.actions";
+import { usePathname } from "next/navigation";
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,6 +35,8 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
   const [isLoading, setIsLoading] = useState(false);
   //   const [emails, setEmails] = useState<string[]>([]);
 
+  const path = usePathname();
+
   const closeAllModals = () => {
     setIsModalOpen(false);
     setIsDropdownOpen(false);
@@ -41,7 +45,25 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     //setEmails([]);
   };
 
-  const handleAction = async () => {};
+  const handleAction = async () => {
+    if (!action) return;
+    setIsLoading(true);
+    let success = false;
+
+    const actions = {
+      rename: () =>
+        renameFile({ fileId: file.$id, name, extension: file.extension, path }),
+      share: () => console.log("share"),
+      delete: () => console.log("delete"),
+    };
+
+    //this way it knows it can only be of the three types above, and then call it
+
+    success = await actions[action.value as keyof typeof actions]();
+    if (success) closeAllModals();
+
+    setIsLoading(false);
+  };
 
   const renderDialogContent = () => {
     if (!action) return null;
@@ -118,8 +140,9 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
           {actionsDropdownItems.map((actionItem) => (
             <DropdownMenuItem
               key={actionItem.value}
-              className="shad-dropdown-item"
-              onClick={() => {
+              onSelect={(e) => {
+                // evita o fechamento automático do Radix no timing “ruim”
+                e.preventDefault();
                 setAction(actionItem);
 
                 if (
@@ -127,7 +150,10 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
                     actionItem.value
                   )
                 ) {
-                  setIsModalOpen(true);
+                  setIsDropdownOpen(false); // 1) fecha o dropdown
+                  setTimeout(() => {
+                    setIsModalOpen(true); // 2) abre o dialog DEPOIS que o dropdown desmontou
+                  }, 0);
                 }
               }}
             >
