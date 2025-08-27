@@ -6,6 +6,7 @@ import Thumbnail from "./Thumbnail";
 import { convertFileSize } from "@/lib/utils";
 import FormattedDateTime from "./FormattedDateTime";
 import { getFileViewUrl } from "@/lib/appwrite/appwrite-client";
+import ActionDropdown from "./ActionDropdown";
 
 const Card = ({ file }: { file: Models.Document }) => {
   // Use o fileId armazenado no documento para gerar a URL correta
@@ -23,7 +24,7 @@ const Card = ({ file }: { file: Models.Document }) => {
         />
 
         <div className="flex flex-col items-end justify-between">
-          {/* <ActionDropdown file={file} /> */}ActionDropdown
+          <ActionDropdown file={file} />
           <p className="body-1">
             {convertFileSize(file.sizeOrig || file.size)}
           </p>
