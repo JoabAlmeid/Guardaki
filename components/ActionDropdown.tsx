@@ -24,9 +24,9 @@ import { actionsDropdownItems } from "@/constants";
 import { constructDownloadUrl } from "@/lib/utils";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
-import { renameFile } from "@/lib/actions/file.actions";
+import { renameFile, updatedFileUsers } from "@/lib/actions/file.actions";
 import { usePathname } from "next/navigation";
-import { FileDetails } from "./ActionsModalContent";
+import { FileDetails, ShareInput } from "./ActionsModalContent";
 
 const ActionDropdown = ({ file }: { file: Models.Document }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +34,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
   const [action, setAction] = useState<ActionType | null>(null);
   const [name, setName] = useState(file.name);
   const [isLoading, setIsLoading] = useState(false);
-  //   const [emails, setEmails] = useState<string[]>([]);
+  const [emails, setEmails] = useState<string[]>([]);
 
   const path = usePathname();
 
@@ -54,7 +54,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     const actions = {
       rename: () =>
         renameFile({ fileId: file.$id, name, extension: file.extension, path }),
-      share: () => console.log("share"),
+      share: () => updatedFileUsers({ fileId: file.$id, emails, path }),
       delete: () => console.log("delete"),
     };
 
@@ -64,6 +64,20 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
     if (success) closeAllModals();
 
     setIsLoading(false);
+  };
+
+  const handleRemoveUser = async (email: string) => {
+    //filters anything that isn't the email you want
+    const updatedEmails = emails.filter((e) => e !== email);
+
+    const success = await updatedFileUsers({
+      fileId: file.$id,
+      emails: updatedEmails,
+      path,
+    });
+
+    if (success) setEmails(updatedEmails);
+    closeAllModals();
   };
 
   const renderDialogContent = () => {
@@ -85,14 +99,14 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
             />
           )}
           {value === "details" && <FileDetails file={file} />}
-          {/* {value === "share" && (
-              <ShareInput
-                file={file}
-                onInputChange={setEmails}
-                onRemove={handleRemoveUser}
-              />
-            )}
-            {value === "delete" && (
+          {value === "share" && (
+            <ShareInput
+              file={file}
+              onInputChange={setEmails}
+              onRemove={handleRemoveUser}
+            />
+          )}
+          {/* {value === "delete" && (
               <p className="delete-confirmation">
                 Are you sure you want to delete{` `}
                 <span className="delete-file-name">{file.name}</span>?
@@ -159,6 +173,7 @@ const ActionDropdown = ({ file }: { file: Models.Document }) => {
               }}
             >
               {actionItem.value === "download" ? (
+                //constrói a URL de download conectando com o bucked do banco
                 <Link
                   href={constructDownloadUrl(file.bucketFileId)}
                   download={file.name}

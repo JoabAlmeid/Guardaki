@@ -82,6 +82,7 @@ const createQueries = (currentUser: Models.Document) => {
   return queries;
 };
 
+//first creates admin permissions and brings current user, then create query to req
 export const getFiles = async () => {
   const { databases } = await createAdminClient();
 
@@ -126,6 +127,30 @@ export const renameFile = async ({
       appwriteConfig.filesCollectionsId,
       fileId,
       { name: newName }
+    );
+
+    revalidatePath(path);
+    return parseStringify(updatedFile);
+  } catch (error) {
+    handleError(error, "Failed to rename files");
+  }
+};
+
+//a copy of renameUser, only it doesn't take anything from frontend, and only changes "emails"
+export const updatedFileUsers = async ({
+  fileId,
+  emails,
+  path,
+}: UpdateFileUsersProps) => {
+  const { databases } = await createAdminClient();
+
+  try {
+    //use a appwrite function where you pass the IDs of where to change, which file, and what to change with what
+    const updatedFile = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.filesCollectionsId,
+      fileId,
+      { users: emails }
     );
 
     revalidatePath(path);
