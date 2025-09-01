@@ -67,7 +67,13 @@ export const uploadFile = async ({
   }
 };
 
-const createQueries = (currentUser: Models.Document) => {
+const createQueries = (
+  currentUser: Models.Document,
+  types: string[],
+  searchText: string,
+  sort: string,
+  limit?: number
+) => {
   //makes query to appwrite. Check if currentUser is owner of file and if the email has access to other files (files have an email array of emails that can access it)
   const queries = [
     Query.or([
@@ -77,13 +83,32 @@ const createQueries = (currentUser: Models.Document) => {
     ]),
   ];
 
-  //TODO: functions like SEARCH, SORT, LIMITS...
+  //now, if the type of file is equal to one of the known types, change URL and search
+  //this is used in getFiles to get their type too, not just the full file
+  if (types.length > 0) queries.push(Query.equal("type", types));
+  if (searchText) queries.push(Query.contains("name", searchText));
+  if (limit) queries.push(Query.limit(limit));
+
+  //sortby = $createdAt. orderBy = desc. Both are inside getFiles param "sort"
+  const [sortBy, orderBy] = sort.split("-");
+
+  //this is an if statement. sortBy can be tittle, name, type...
+  queries.push(
+    orderBy === "asc" ? Query.orderAsc(sortBy) : Query.orderDesc(sortBy)
+  );
+
+  console.log(queries);
 
   return queries;
 };
 
 //first creates admin permissions and brings current user, then create query to req
-export const getFiles = async () => {
+export const getFiles = async ({
+  types = [],
+  searchText = "",
+  sort = "$createdAt-desc",
+  limit,
+}: GetFilesProps) => {
   const { databases } = await createAdminClient();
 
   try {
@@ -91,9 +116,9 @@ export const getFiles = async () => {
 
     if (!currentUser) throw new Error("User not found");
 
-    const queries = createQueries(currentUser);
+    const queries = createQueries(currentUser, types, searchText, sort, limit);
 
-    console.log({ currentUser, queries });
+    // console.log({ currentUser, queries });
 
     //gathers all files from this database and this collection from appwrite
     const files = await databases.listDocuments(
@@ -102,7 +127,7 @@ export const getFiles = async () => {
       queries
     );
 
-    console.log({ files });
+    // console.log({ files });
 
     return parseStringify(files);
   } catch (error) {
