@@ -40,7 +40,7 @@ const Page = async ({ searchParams, params }: SearchParamProps) => {
           ))}{" "}
         </section>
       ) : (
-        <p className="empty-list">No files uploaded</p>
+        <p className="empty-list">Nenhum arquivo guardado.</p>
       )}
     </div>
   );

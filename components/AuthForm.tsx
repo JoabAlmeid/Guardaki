@@ -83,7 +83,9 @@ const AuthForm = ({ type }: { type: FormType }) => {
               render={({ field }) => (
                 <FormItem>
                   <div className="shad-form-item">
-                    <FormLabel className="shad-form-label">Full Name</FormLabel>
+                    <FormLabel className="shad-form-label">
+                      Nome Completo
+                    </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="Enter your full name"
